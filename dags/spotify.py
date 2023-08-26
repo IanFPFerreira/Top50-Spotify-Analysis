@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 
 import pandas as pd
+import pytz
 from airflow import DAG
 from airflow.models import Variable
 from airflow.operators.python import PythonOperator
@@ -13,7 +14,6 @@ from requests import get, post
 def check_and_create_file():
     file_path = '/opt/airflow/data/spotify_Top50_infos.csv'
     if not os.path.exists(file_path):
-        # O arquivo não existe, então criamos um arquivo vazio
         with open(file_path, 'w') as file:
             file.write('Nome da música,Artistas,Data do top 50,Popularidade\n')
         print(f"Arquivo {file_path} criado com sucesso.")
@@ -65,13 +65,14 @@ def search_info(**kwargs):
 
     tracks_info = []
 
+    time_zone = pytz.timezone('America/Sao_Paulo')
     for track in data['tracks']['items']:
         name_track = track['track']['name']
         artists = [artist['name'] for artist in track['track']['artists']]
-        date = datetime.now().strftime('%Y-%m-%d')
+        current_date = datetime.now().astimezone(time_zone).strftime('%Y-%m-%d')
         popularity = track['track']['popularity'] if 'popularity' in track['track'] else 0
 
-        tracks_info.append([name_track, ', '.join(artists), date, popularity])
+        tracks_info.append([name_track, ', '.join(artists), current_date, popularity])
 
     df = pd.DataFrame(tracks_info, columns=['Nome da música', 'Artistas', 'Data do top 50', 'Popularidade'])
     df.to_csv('/opt/airflow/data/spotify_Top50_infos.csv', index=False, mode='a', header=False)
