@@ -1,6 +1,6 @@
 # Spotify Top 50 Playlist Data Pipeline
 
-Este DAG (Grafo Acíclico Direcionado) do [Airflow](https://airflow.apache.org) automatiza o processo de coleta de dados sobre as 50 músicas mais populares da playlist oficial do Spotify **Top 50 - Mundo**. Os dados incluem o nome da música, os artistas, a data em que os dados foram extraídos no top 50 e sua popularidade.
+Este projeto utiliza o [Apache Airflow](https://airflow.apache.org) para criar uma pipeline de dados que coleta informações sobre as 50 músicas mais populares na playlist oficial do Spotify denominada Top 50 - Mundo. A pipeline é responsável por extrair dados essenciais de cada música, como o nome da faixa, os artistas envolvidos e sua pontuação de popularidade.
 
 ## Pré-requisitos
 Antes de executar este DAG, você precisa configurar algumas coisas:
