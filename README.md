@@ -31,4 +31,4 @@ Este DAG executa as seguintes tarefas:
 
 O [Power Bi](https://powerbi.microsoft.com/pt-br/) é utilizado para analisar a composição da playlist **Top 50 - Mundo** e entender quais artistas têm o maior número de músicas presentes. Além disso, o Power BI permite criar uma visualização dinâmica que rastreia a variação das músicas na playlist ao longo do tempo, com base em sua popularidade, por meio do Gráfico de Corrida de Barras Animado.
 
-![AnalisePowerBI](PowerBI/SpotifyTop50Analysis.jpg)
+![AnalisePowerBI](PowerBI/SpotifyTop50Analysis.gif)
